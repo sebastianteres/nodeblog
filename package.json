@@ -10,7 +10,7 @@
 	"private": true,
 	"dependencies": {
 	    "express": "3.x",
-	    "mongoose": "latest",
+	    "mongoose": "3.8.7",
 	    "ejs": "latest",
 	    "bcrypt": "latest"
 	}
