@@ -9,19 +9,19 @@ $complementary: #A66715, #BF9154, #ffac40, #FFC170, #FFD196;
 @mixin cs($colors) {
   @if (type-of($colors) == "list" and length($colors) == 5) {
 		background-color: nth($colors, 3);
-		.cs-txt-dark {
+		.cs-txt-dark, &.cs-txt-dark {
 			color: nth($colors, 2);
 		}
-		.cs-txt-darker {
+		.cs-txt-darker, &.cs-txt-darker {
 			color: nth($colors, 1);
 		}
-		.cs-txt-light {
+		.cs-txt-light, &.cs-txt-light {
 			color: nth($colors, 4);
 		}
-		.cs-txt-lighter {
+		.cs-txt-lighter, &.cs-txt-lighter {
 			color: nth($colors, 5);
 		}
-		.cs-txt-main {
+		.cs-txt-main, &.cs-txt-main {
 			color: nth($colors, 3);
 		}
 		span.cs-label-dark, ul.cs-label-dark li {
@@ -52,7 +52,7 @@ $complementary: #A66715, #BF9154, #ffac40, #FFC170, #FFD196;
 			background-color: nth($colors, 2);
 		}
 		&.cs-nobg {
-			background-color: none;
+			background-color: transparent;
 		}
 		.btn {
 			background-color: nth($complementary, 3);

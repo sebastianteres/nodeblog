@@ -8,6 +8,7 @@ lcov.info
 *.pid
 *.gz
 psd
+.sass-cache
 
 pids
 logs

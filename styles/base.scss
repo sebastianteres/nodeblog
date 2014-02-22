@@ -222,13 +222,17 @@ footer {
 		line-height: 82px;
 	}
 	a.social {
+		float: left;
 		text-decoration: none;
 		color: inherit;
 	}
 	a.social:hover {
 		color: #fff;
 	}
-	a.btn {
-		margin-top: 20px;
+	.mail {
+		.flaticon-little18:before {font-size: 65px;}
+		float: left;
+		font-size: 50px;
+		line-height: 68px;
 	}
 }
