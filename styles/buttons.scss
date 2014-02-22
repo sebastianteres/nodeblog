@@ -1,0 +1,49 @@
+.btn, .btn-nocs {
+	border-radius: 3px;
+	border: 1px solid #333333;
+	text-align: center;
+	color: #333333;
+	background: none;
+	padding: 0 20px;
+	font-size: 14px;
+	font-weight: bold;
+}
+
+.btn-xl {
+	padding: 10px 20px;
+}
+
+a.btn {
+	text-decoration: none;
+	color: inherit;
+	border: none;
+	margin: none;
+}
+
+.btn:hover, .btn-nocs:hover {
+	color: #777;
+	border-color: #777;
+}
+
+.label {
+	border-radius: 3px;
+	text-align: center;
+	padding: 2px;
+	font-size: 14px;
+	font-weight: normal;
+}
+
+ul.label{ 
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	li {
+		float: left;
+		margin: 0 2px 2px;
+		border-radius: 3px;
+		text-align: center;
+		padding: 2px 5px;
+		font-size: 14px;
+		font-weight: normal;
+	}
+}

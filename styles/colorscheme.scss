@@ -1,0 +1,82 @@
+/*
+	color: darker, dark, main, light, lighter 
+ */
+$primary: #03406a, #0a64a4, #65a5d1, #88b7d7, #b2d2e8;
+$secondaryA: #00685a, #00a08a, #5dd0c0, #88dbcf, #aee7df;
+$secondaryB: #333, #666, #a1a1a1, #d4d4d4, #efefef;
+$complementary: #A66715, #BF9154, #ffac40, #FFC170, #FFD196;
+
+@mixin cs($colors) {
+  @if (type-of($colors) == "list" and length($colors) == 5) {
+		background-color: nth($colors, 3);
+		.cs-txt-dark {
+			color: nth($colors, 2);
+		}
+		.cs-txt-darker {
+			color: nth($colors, 1);
+		}
+		.cs-txt-light {
+			color: nth($colors, 4);
+		}
+		.cs-txt-lighter {
+			color: nth($colors, 5);
+		}
+		.cs-txt-main {
+			color: nth($colors, 3);
+		}
+		span.cs-label-dark, ul.cs-label-dark li {
+			background-color: nth($colors, 2);
+		}
+		span.cs-label-darker, ul.cs-label-darker li {
+			background-color: nth($colors, 1);
+		}
+		span.cs-label-light, ul.cs-label-light li {
+			background-color: nth($colors, 4);
+		}
+		span.cs-label-lighter, ul.cs-label-lighter li {
+			background-color: nth($colors, 5);
+		}
+		span.cs-label-main, ul.cs-label-main li {
+			background-color: nth($colors, 3);
+		}
+		&.cs-bg-lighter {
+			background-color: nth($colors, 5);
+		}
+		&.cs-bg-darker {
+			background-color: nth($colors, 1);
+		}
+		&.cs-bg-light {
+			background-color: nth($colors, 4);
+		}
+		&.cs-bg-dark {
+			background-color: nth($colors, 2);
+		}
+		&.cs-nobg {
+			background-color: none;
+		}
+		.btn {
+			background-color: nth($complementary, 3);
+			color: #fff;
+			border: none;
+		}
+		.btn:hover {
+			background-color: nth($complementary, 4);
+		}
+	}
+}
+
+.cs-primary {
+	@include cs($primary);
+}
+
+.cs-secondary-a {
+	@include cs($secondaryA);
+}
+
+.cs-secondary-b {
+	@include cs($secondaryB);
+}
+
+.cs-complementary {
+	@include cs($complementary);
+}

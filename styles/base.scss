@@ -1,0 +1,234 @@
+@import 'normalize';
+@import 'grid';
+@import 'buttons';
+@import 'helpers';
+@import 'icons';
+@import 'colorscheme';
+@import url(http://fonts.googleapis.com/css?family=Lato:400,700);
+
+/**
+ * Mixins
+ */
+
+@mixin setTransformOrigin($origin) {
+	transform-origin: $origin;
+	-o-transform-origin: $origin;
+	-ms-transform-origin: $origin;
+	-moz-transform-origin: $origin;
+	-webkit-transform-origin: $origin;
+}
+
+@mixin rotate($angle, $origin) {
+	@include setTransformOrigin($origin);
+	transform: rotate($angle);
+	-o-transform: rotate($angle);
+	-ms-transform: rotate($angle);
+	-moz-transform: rotate($angle);
+	-webkit-transform: rotate($angle);
+}
+/**
+ * Styles
+ */
+
+.txt-sm {
+	font-size: 0.9em;
+}
+.txt-xsm {
+	font-size: 0.8em;
+}
+
+body {
+	font-family: 'Lato', sans-serif;
+}
+.container h3 {font-size: 30px;}
+
+.navbar {
+	font-size: 30px;
+	height: 40px;
+	padding-top: 20px;
+	padding-bottom: 20px;
+	border-radius: 0;
+	font-weight: normal;
+	.row {
+		line-height: 40px;
+	}
+}
+
+.hero {
+	text-align: center;
+	h1 {
+		font-size: 60px;
+	}
+	h2 {
+		font-size: 45px;
+	}
+	h1, h2 {
+		font-weight: normal;
+		margin: 0;
+		line-height: auto;
+	}
+	p {
+		font-size: 24px;
+	}
+	.container {
+		padding: 90px 0;
+	}
+	.btn {
+		font-weight: normal;
+		font-size: 20px;
+		padding: 10px 20px;
+	}
+}
+
+.guide {
+	.col-1 {
+		
+		line-height: 40px;
+		text-align: center;
+		font-size: 10px;
+		background: #CCC;
+	}
+}
+
+.info {
+	a {
+		text-decoration: none;
+	}
+	overflow: hidden;
+	height: 700px;
+	position: relative;
+	.slider {
+		position: relative;
+		.skills, .about {
+			-webkit-box-shadow: 2px 0px 5px 0px rgba(0, 0, 0, 0.3);
+			-moz-box-shadow:    2px 0px 5px 0px rgba(0, 0, 0, 0.3);
+			box-shadow:         2px 0px 5px 0px rgba(0, 0, 0, 0.3);
+		}
+		.skills, .about, .projects {
+			top: 0;
+			height: 700px;
+			width: 100%;
+			position: absolute;
+		}
+		.margin-helper {
+			position:absolute;
+			mergin-left: 50%;
+			.container {
+				position: absolute;
+				mergin-left: -50%;
+			}
+		}
+	}
+	&.active-skills {
+		.skills {left: -20.46%;width:110%;}
+		.about {left: 0;}
+		.projects {left: 100%;width:110%;}
+		.content-skills {display: block;}
+		.content-about {display: none;}
+		.content-projects {display: none;}
+	}
+	&.active-about {
+		.skills {left: -100%;}
+		.about {left: 0;}
+		.projects {left: 100%;}
+		.content-skills {display: none;}
+		.content-about {display: block;}
+		.content-projects {display: none;}
+	}
+	&.active-projects {
+		.skills {left: -100%;}
+		.about {left: -89.54%;}
+		.projects {left: 10.46%;;width:110%;}
+		.content-skills {display: none;}
+		.content-about {display: none;}
+		.content-projects {display: block;}
+	}
+
+	h4 {
+		margin: 0;
+		font-size: 18px;
+		font-weight: bold;
+	}
+
+	p {
+		font-size: 14px;
+	}
+}
+.content-skills {
+	.flaticon-career:before {
+		font-size: 110px;
+	}
+	.flaticon-advanced:before {
+		font-size: 120px;
+	}
+	.flaticon-chemistry1:before {
+		font-size: 126px;
+	}
+	.row { margin-bottom: 30px;}
+}
+.content-projects {
+	.project-logo {
+		text-align: center;
+		margin-bottom: 30px;
+	}
+	.icon-logos_urm:before{font-size: 54px;line-height: 66px;}
+	.icon-logos_mediapass:before{font-size: 40px;line-height: 66px;}
+	.icon-logos_ebillity:before{font-size: 66px;line-height: 66px;}
+	.col-3 { padding-top: 40px;}
+	.icon-info { margin: 0 auto 30px; display: block;}
+	.urmobile, .mediapass {
+		margin-top: 13px;
+	}
+}
+.content-about {
+	.flaticon-male156:before {font-size: 170px;}
+	.flaticon-earth:before {font-size: 144px;}
+	.flaticon-quotations1:before {font-size: 40px;}
+
+	.row.remotexp { margin-top: 30px;}
+	.quotes {
+		margin-top: 30px;
+		.quote {display:block;}
+		.quote-content {
+			float: left;
+			width: 300px;
+			margin: 10px 0 0 10px;
+			font-size: 0.9em;
+		}
+		.author {
+			font-size: 0.8em;
+			text-align: right;
+		}
+	}
+}
+.right-tab-title {
+	@include rotate(90deg, 0 20px);
+	white-space:nowrap;
+}
+.left-tab-title {
+	@include rotate(270deg, 100% 20px);
+	float:right;
+	white-space:nowrap;
+}
+footer {
+	padding: 20px 0 10px;
+	p {
+		margin-top: 0;
+	}
+	[class^="flaticon-"]:before, [class*=" flaticon-"]:before, [class^="flaticon-"]:after, [class*=" flaticon-"]:after {
+		font-size: 50px;
+	}
+	.socialicons {
+		line-height: 82px;
+	}
+	a.social {
+		text-decoration: none;
+		color: inherit;
+	}
+	a.social:hover {
+		color: #fff;
+	}
+	a.btn {
+		margin-top: 20px;
+	}
+}

@@ -1,0 +1,17 @@
+{
+	"name": "sebastianteres.com",
+	"version": "0.0.0",
+	"description": "",
+	"main": "index.js",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"author": "Sebastian Teres",
+	"private": true,
+	"dependencies": {
+	    "express": "3.x",
+	    "mongoose": "latest",
+	    "ejs": "latest",
+	    "bcrypt": "latest"
+	}
+}

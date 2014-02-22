@@ -1,0 +1,81 @@
+@font-face {
+	font-family: 'logos';
+	src:url('icons/logos.eot?6zpkdl');
+	src:url('icons/logos.eot?#iefix6zpkdl') format('embedded-opentype'),
+		url('icons/logos.woff?6zpkdl') format('woff'),
+		url('icons/logos.ttf?6zpkdl') format('truetype'),
+		url('icons/logos.svg?6zpkdl#logos') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+[class^="icon-"], [class*=" icon-"] {
+	font-family: 'logos';
+	speak: none;
+	font-style: normal;
+	font-weight: normal;
+	font-variant: normal;
+	text-transform: none;
+	line-height: 1;
+
+	/* Better Font Rendering =========== */
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+.icon-logos_urm:before {
+	content: "\e600";
+}
+.icon-logos_mediapass:before {
+	content: "\e601";
+}
+.icon-logos_ebillity:before {
+	content: "\e602";
+}
+
+@font-face {
+	font-family: "Flaticon";
+	src: url("icons/flaticon.eot");
+	src: url("icons/flaticon.eot#iefix") format("embedded-opentype"),
+	url("icons/flaticon.woff") format("woff"),
+	url("icons/flaticon.ttf") format("truetype"),
+	url("icons/flaticon.svg") format("svg");
+	font-weight: normal;
+	font-style: normal;
+}
+[class^="flaticon-"]:before, [class*=" flaticon-"]:before,
+[class^="flaticon-"]:after, [class*=" flaticon-"]:after {   
+	font-family: Flaticon;
+        font-size: 20px;
+font-style: normal;
+margin-left: 20px;
+}.flaticon-advanced:before {
+	content: "\e000";
+}
+.flaticon-career:before {
+	content: "\e001";
+}
+.flaticon-chemistry1:before {
+	content: "\e002";
+}
+.flaticon-earth:before {
+	content: "\e003";
+}
+.flaticon-github3:before {
+	content: "\e004";
+}
+.flaticon-linkedin2:before {
+	content: "\e005";
+}
+.flaticon-male156:before {
+	content: "\e006";
+}
+.flaticon-quotations1:before {
+	content: "\e007";
+}
+.flaticon-social92:before {
+	content: "\e008";
+}
+.flaticon-twitter4:before {
+	content: "\e009";
+}
