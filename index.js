@@ -9,6 +9,8 @@ app.engine('.html', require('ejs').__express);
 app.set('views', __dirname + '/views');
 app.set('view engine', 'html');
 app.use(express.bodyParser());
+app.use(express.methodOverride());
+app.use(express.errorHandler({ dumpExceptions: true, showStack: true }))
 app.use(express.static(__dirname + '/public'));
 
 function staticView(view) {
@@ -25,5 +27,6 @@ function staticView(view) {
 app.get('/', staticView('index')); //Home
 //app.get('/dashboard', staticView('dashboard'));
 
-app.listen(port);
-console.log("Server running at http://" + ipaddr + ":" + port + "/");
+app.listen(port, ipaddr, function(){
+  console.log('%s: Node server started on %s:%d ...', Date(Date.now()), ipaddr, port);
+});
