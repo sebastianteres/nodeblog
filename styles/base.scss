@@ -31,6 +31,18 @@
  * Styles
  */
 
+/**
+ * Fix blank space problem
+ * http://stackoverflow.com/questions/17005500/bootstrap-css-responsive-left-with-a-white-space-on-the-right
+ */
+html {
+  width: auto !important;
+  overflow-x: hidden !important;
+}
+body {
+  width: auto !important;
+  overflow-x: hidden !important;
+}
 .txt-sm {
 	font-size: 0.9em;
 }
@@ -224,7 +236,10 @@ body {
 	@media (max-width: 767px) { display: block;}
 
 	/* Landscape phones and down */
-	@media (max-width: 480px) { display: block; }
+	@media (max-width: 480px) { display: block;}
+	.tabs h4 {
+		@media (max-width: 480px) { font-size: 1em;}
+	}
 	.firstrow {margin-top: 25px;}
 	.contentrow {margin-top: 15px;}
 	.lastrow {margin-top:15px;margin-bottom:25px;}
@@ -287,6 +302,7 @@ footer {
 	}
 	[class^="flaticon-"]:before, [class*=" flaticon-"]:before, [class^="flaticon-"]:after, [class*=" flaticon-"]:after {
 		font-size: 50px;
+		@media (max-width: 480px) { font-size: 40px;}
 	}
 	.socialicons {
 		line-height: 82px;
@@ -303,9 +319,11 @@ footer {
 	.mail {
 		margin-top: -13px;
 		margin-left: 5px;
-		.flaticon-little18:before {font-size: 65px;}
+		.flaticon-little18:before {font-size: 65px;
+			@media (max-width: 480px) { font-size: 50px;}}
 		float: right;
 		font-size: 50px;
 		line-height: 50px;
+		@media (max-width: 480px) { line-height: 40px; margin-top: 0px;}
 	}
 }
