@@ -24,15 +24,23 @@
 		location.hash = "#" + this.getAttribute("data-target");
 	});
 
+	$(".info-sm .project .project-logo").click(function(){
+		$(".project-details").removeClass("active");
+		$(this).next(".project-details").addClass("active");
+	});
+
 	router = {
 		"#skills" : function(){
 			$("#info").attr("class", "info active-skills");
+			$("#info-sm").attr("class", "info-sm active-skills");
 		},
 		"#projects" : function(){
 			$("#info").attr("class", "info active-projects");
+			$("#info-sm").attr("class", "info-sm active-projects");
 		},
 		"#about" : function(){
 			$("#info").attr("class", "info active-about");
+			$("#info-sm").attr("class", "info-sm active-about");
 		}
 	}
 

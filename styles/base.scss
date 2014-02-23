@@ -1,7 +1,8 @@
-@import 'normalize';
+/*@import 'normalize';
 @import 'grid';
 @import 'buttons';
-@import 'helpers';
+@import 'helpers';*/
+@import 'buttons';
 @import 'icons';
 @import 'colorscheme';
 @import url(http://fonts.googleapis.com/css?family=Lato:400,700);
@@ -40,27 +41,27 @@
 body {
 	font-family: 'Lato', sans-serif;
 }
-.container h3 {font-size: 30px;}
+.container h3 {font-size: 2.143em;}
 
 .navbar {
-	font-size: 30px;
-	height: 40px;
-	padding-top: 20px;
-	padding-bottom: 20px;
+	font-size: 1.786em;
+	padding-top: 10px;
+	padding-bottom: 10px;
 	border-radius: 0;
 	font-weight: normal;
 	.row {
 		line-height: 40px;
 	}
+	margin-bottom: 0;
 }
 
 .hero {
 	text-align: center;
 	h1 {
-		font-size: 60px;
+		font-size: 4.286em;
 	}
 	h2 {
-		font-size: 45px;
+		font-size: 3.214em;
 	}
 	h1, h2 {
 		font-weight: normal;
@@ -68,29 +69,25 @@ body {
 		line-height: auto;
 	}
 	p {
-		font-size: 24px;
+		font-size: 1.714em;
 	}
 	.container {
 		padding: 90px 0;
 	}
 	.btn {
 		font-weight: normal;
-		font-size: 20px;
+		font-size: 1.429em;
 		padding: 10px 20px;
 	}
 }
 
-.guide {
-	.col-1 {
-		
-		line-height: 40px;
-		text-align: center;
-		font-size: 10px;
-		background: #CCC;
-	}
-}
-
 .info {
+
+	/* Landscape phone to portrait tablet */
+	@media (max-width: 767px) { display: none;}
+
+	/* Landscape phones and down */
+	@media (max-width: 480px) { display: none; }
 	a {
 		text-decoration: none;
 	}
@@ -170,6 +167,7 @@ body {
 	.project-logo {
 		text-align: center;
 		margin-bottom: 30px;
+		margin-top: 20px;
 	}
 	.icon-logos_urm:before{font-size: 54px;line-height: 66px;}
 	.icon-logos_mediapass:before{font-size: 40px;line-height: 66px;}
@@ -210,6 +208,78 @@ body {
 	float:right;
 	white-space:nowrap;
 }
+
+.calign {
+	text-align: center;
+}
+
+/**
+ * Mobile version of about, skills & projects
+ */
+
+.info-sm {
+	display: none;
+	a {text-decoration: none; color: inherit;}
+	/* Landscape phone to portrait tablet */
+	@media (max-width: 767px) { display: block;}
+
+	/* Landscape phones and down */
+	@media (max-width: 480px) { display: block; }
+	.firstrow {margin-top: 25px;}
+	.contentrow {margin-top: 15px;}
+	.lastrow {margin-top:15px;margin-bottom:25px;}
+
+	.about-sm {
+		display: none;
+		.flaticon-male156:before {font-size: 100px; margin-left: -25px;}
+		.flaticon-quotations1:before {font-size: 40px;}
+		.quotes {
+			margin-top: 30px;
+			.quote {display:block; margin-right: 10px;}
+			.quote-content {
+				font-size: 0.9em;
+			}
+			.author {
+				font-size: 0.8em;
+				text-align: right;
+			}
+		}
+	}
+
+	.skills-sm {
+		display: none;
+		.flaticon-career:before {font-size: 40px;margin-right: 10px;}
+		.flaticon-advanced:before {font-size: 40px;margin-right: 10px;}
+		.flaticon-chemistry1:before {font-size: 40px;margin-right: 10px;}
+
+		@for $i from 1 through 5 {
+			.lvl-#{$i} { 
+				$size : 0.7 + (($i / 10) * 2);
+				font-size: $size + em;
+			}
+		}
+		.lvl-5 {font-weight: bold;}
+	}
+
+	.projects-sm {
+		display: none;
+		text-align: center;
+		.icon-logos_urm:before{font-size: 54px;line-height: 80px;}
+		.icon-logos_mediapass:before{font-size: 40px;line-height: 80px;}
+		.icon-logos_ebillity:before{font-size: 66px;line-height: 80px;}
+		.project { margin-top: 10px; margin-bottom: 10px;}
+
+		.project-details {
+			display: none;
+			&.active {display: block;}
+		}
+	}
+	&.active-skills .skills-sm {display:block;}
+	&.active-about .about-sm {display:block;}
+	&.active-projects .projects-sm {display:block;}
+
+}
+
 footer {
 	padding: 20px 0 10px;
 	p {
@@ -222,17 +292,20 @@ footer {
 		line-height: 82px;
 	}
 	a.social {
-		float: left;
+		float: right;
 		text-decoration: none;
 		color: inherit;
+		margin-right: 10px;
 	}
 	a.social:hover {
 		color: #fff;
 	}
 	.mail {
+		margin-top: -13px;
+		margin-left: 5px;
 		.flaticon-little18:before {font-size: 65px;}
-		float: left;
+		float: right;
 		font-size: 50px;
-		line-height: 68px;
+		line-height: 50px;
 	}
 }
