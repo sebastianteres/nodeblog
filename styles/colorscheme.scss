@@ -58,6 +58,16 @@ $complementary: #A66715, #BF9154, #ffac40, #FFC170, #FFD196;
 			background-color: nth($complementary, 3);
 			color: #fff;
 			border: none;
+			&.lighter {background-color: nth($colors, 5);}
+			&.light {background-color: nth($colors, 4);}
+			&.main {background-color: nth($colors, 3);}
+			&.dark {background-color: nth($colors, 2);}
+			&.darker {background-color: nth($colors, 1);}
+			&.lighter:hover {background-color: nth($colors, 5);background-color: nth($colors, 4);}
+			&.light:hover {background-color: nth($colors, 4);background-color: nth($colors, 3);}
+			&.main:hover {background-color: nth($colors, 3);background-color: nth($colors, 4);}
+			&.dark:hover {background-color: nth($colors, 2);background-color: nth($colors, 3);}
+			&.darker:hover {background-color: nth($colors, 1);background-color: nth($colors, 2);}
 		}
 		.btn:hover {
 			background-color: nth($complementary, 4);
