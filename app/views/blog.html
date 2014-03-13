@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Sebastian Perez Teres - Frontend Engineer</title>
+	<meta name="description" content="I’m a creative frontend engineer focused on delivering usable and beautiful applications to the end user.">
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+	<link href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="css/main.css">
+	<!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+</head>
+<body>
+	<nav class="navbar cs-secondary-b cs-bg-darker">
+		<div class="container">
+			<div class="row">
+				<div class="col-xs-8 col-sm-6 col-md-4">
+					<span class="cs-txt-lighter">Sebastian Perez</span>
+				</div>
+				<div class="col-xs-4 col-sm-3 col-sm-offset-3 col-md-2 col-md-offset-6">
+					<a class="btn dark pull-right" href="/">About</a>
+				</div>
+			</div>
+		</div>
+	</nav>
+
+	<div class="container-fluid blog cs-primary">
+		<div class="row">
+
+
+		    <% posts.forEach(function(post, index){ %>
+			<div class="col-xs-12 col-sm-6 col-md-4 <%= getPostStyle(index) %>">
+				<div class="post-preview">
+					<div class="post-image">
+						An image goes here here here here here here here here here
+					</div>
+					<h3><%= post.title %></h3>
+					<p><%= post.content %></p>
+				</div>
+			</div>
+			<% }); %>
+
+		</div>
+	</div>
+
+	<footer class="cs-secondary-b cs-bg-main">
+		<div class="container cs-txt-dark">
+			<div class="row">
+				<div class="col-sm-3 col-md-3 txt-xsm hidden-xs">
+					<p>Thanks to Daniel Teres for his designing tips and guidance, The Flaticon&copy; awesome designs by Freepik, Elegant Themes and Daniel Bruce.
+					</p>
+					<p class="ralign"><strong>Sebastian Perez &copy;2014</strong></p>
+				</div>
+				<div class="col-sm-9 col-md-9 socialicons cs-txt-light">
+					<div class="mail">
+						<a class="social cs-complementary cs-nobg cs-txt-main" href="mailto:sebastianteres@me.com">
+							<span class="flaticon-little18"></span></a>
+					</div>
+					<a class="social" href="http://www.linkedin.com/in/sebastianperezteres/en" target="_blank">
+						<span class="flaticon-linkedin2"></span></a>
+					<a class="social" href="https://www.google.com/+SebastianPerezTeres?rel=author" target="_blank">
+						<span class="flaticon-social92"></span></a>
+					<a class="social" href="https://twitter.com/sebastianteres" target="_blank">
+						<span class="flaticon-twitter4"></span></a>
+					<a class="social" href="https://github.com/sebastianteres" target="_blank">
+						<span class="flaticon-github3"></span></a>
+				</div>
+				<div class="col-xs-12 visible-xs">
+					<p>Thanks to Daniel Teres for his designing tips and guidance
+						<br/>The Flaticon&copy; awesome designs by Freepik, Elegant Themes and Daniel Bruce.
+					</p>
+					<p class="ralign"><strong>Sebastian Perez &copy;2014</strong></p>
+				</div>
+			</div>
+		</div>
+	</footer>
+
+	<!--<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+	<script src="js/home.js"></script>
+	<script>
+		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+		ga('create', 'UA-48599408-1', 'sebastianteres.com');
+		ga('send', 'pageview');
+
+	</script>-->
+</body>
+</html>

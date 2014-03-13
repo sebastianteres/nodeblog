@@ -39,19 +39,19 @@ $complementary: #A66715, #BF9154, #ffac40, #FFC170, #FFD196;
 		span.cs-label-main, ul.cs-label-main li {
 			background-color: nth($colors, 3);
 		}
-		&.cs-bg-lighter {
+		&.cs-bg-lighter, .cs-bg-lighter {
 			background-color: nth($colors, 5);
 		}
-		&.cs-bg-darker {
+		&.cs-bg-darker, .cs-bg-darker {
 			background-color: nth($colors, 1);
 		}
-		&.cs-bg-light {
+		&.cs-bg-light, .cs-bg-light {
 			background-color: nth($colors, 4);
 		}
-		&.cs-bg-dark {
+		&.cs-bg-dark, .cs-bg-dark {
 			background-color: nth($colors, 2);
 		}
-		&.cs-nobg {
+		&.cs-nobg, .cs-nobg {
 			background-color: transparent;
 		}
 		.btn {

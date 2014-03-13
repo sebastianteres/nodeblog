@@ -13,15 +13,15 @@
 	<link rel="stylesheet" href="css/main.css">
 	<!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
 </head>
-<body>
-	<nav class="navbar cs-primary cs-bg-lighter">
+<body itemscope itemtype="http://data-vocabulary.org/Person">
+	<nav class="navbar cs-secondary-b cs-bg-darker">
 		<div class="container">
 			<div class="row">
 				<div class="col-xs-8 col-sm-6 col-md-4">
-					<span class="cs-txt-darker">Sebastian Perez</span>
+					<span class="cs-txt-lighter">Sebastian Perez</span>
 				</div>
 				<div class="col-xs-4 col-sm-3 col-sm-offset-3 col-md-2 col-md-offset-6">
-					<button class="btn dark pull-right">Blog</button>
+					<!--<a class="btn dark pull-right" href="/blog">Blog</a>-->
 				</div>
 			</div>
 		</div>
@@ -40,7 +40,7 @@
 					</p>
 					<a href="mailto:sebastianteres@me.com" class="btn">Contact Me</a>
 				</div>
-				<div class="col-md-4 col-lg-5 hidden-xs hidden-sm">
+				<div class="col-md-4 col-lg-5 hidden-xs hidden-sm" itemprop="photo">
 					<img src="images/sebastianperez.png" alt="Sebastian Perez">
 				</div>
 			</div>
@@ -122,7 +122,7 @@
 					<div class="col-sm-2 col-sm-offset-2"><span class="flaticon-male156 cs-txt-lighter"></span></div>
 					<div class="col-sm-6">
 						<p>
-							My full name is Sebastian Perez Teres,  I’m a creative frontend engineer focused on delivering usable and beautiful applications to the end user.<br/>
+							My full name is <span itemprop="name">Sebastian Perez Teres</span>,  I’m a creative <span itemprop="title">frontend engineer</span> focused on delivering usable and beautiful applications to the end user.<br/>
 							I have 4 years of experience working on amazing applications with a challenging user experience.<br/>
 							I like well organized, maintainable and testable code. I have been working in Agile environments all this time using tools like trello and Asana to keep top productivity.
 						</p>

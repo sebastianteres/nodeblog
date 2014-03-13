@@ -331,3 +331,20 @@ footer {
 		@media (max-width: 480px) { line-height: 40px; margin-top: 0px;}
 	}
 }
+
+/**
+ * BLOG
+ */
+.blog {
+	.post-preview {
+		padding: 20px;
+		h3 {
+			margin: 0 0 10px;
+		}
+		.post-image {
+			margin: 20px;
+			width: 120px;
+			float: left;
+		}
+	}
+}
