@@ -1,7 +1,5 @@
-/*@import 'normalize';
-@import 'grid';
-@import 'buttons';
-@import 'helpers';*/
+
+@import 'pagedown';
 @import 'buttons';
 @import 'icons';
 @import 'colorscheme';
@@ -346,5 +344,23 @@ footer {
 			width: 120px;
 			float: left;
 		}
+	}
+}
+
+
+/**
+ * ADMIN
+ */
+.admin {
+	.newpost {
+		textarea { width: 100%;}
+	}
+	.recent-posts {
+		form {
+			display: inline;
+		}
+	}
+	.container {
+		margin-top: 20px;
 	}
 }
