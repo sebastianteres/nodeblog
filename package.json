@@ -1,19 +1,22 @@
 {
-	"name": "sebastianteres.com",
-	"version": "0.0.0",
-	"description": "",
-	"main": "index.js",
-	"scripts": {
-		"test": "echo \"Error: no test specified\" && exit 1"
-	},
-	"author": "Sebastian Teres",
-	"private": true,
-	"dependencies": {
-	    "express": "3.x",
-	    "mongoose": "3.8.7",
-	    "ejs": "latest",
-	    "bcrypt": "latest",
-	    "toolbox": "latest",
-	    "pagedown" : "latest"
-	}
+  "name": "sebastianteres.com",
+  "version": "0.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Sebastian Teres",
+  "private": true,
+  "dependencies": {
+    "express": "3.x",
+    "mongoose": "3.8.7",
+    "ejs": "latest",
+    "bcrypt": "latest",
+    "toolbox": "latest",
+    "pagedown": "latest",
+    "passport-local": "~1.0.0",
+    "passport": "~0.2.0",
+    "moment": "~2.5.1"
+  }
 }

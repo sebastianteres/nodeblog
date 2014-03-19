@@ -13,72 +13,76 @@
 	<link rel="stylesheet" href="/css/main.css">
 	<!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
 </head>
-<body class="admin cs-primary cs-bg-lighter">
-	<nav class="navbar cs-secondary-b cs-bg-darker">
-		<div class="container">
-			<div class="row">
-				<div class="col-xs-8 col-sm-6 col-md-4">
-					<span class="cs-txt-lighter">Sebastian Perez</span>
-				</div>
-				<div class="col-xs-4 col-sm-3 col-sm-offset-3 col-md-2 col-md-offset-6">
-					<a class="btn dark pull-right" href="/">About</a>
-				</div>
-			</div>
-		</div>
-	</nav>
+<body class="admin cs-secondary-b cs-bg-lighter">
+	<%- include blog_nav.html %>
 
 	<div class="container cs-txt-darker">
-		<% if(locals.error && locals.errorMessage) { %>
-		<div class="row">
-			<div class="col-xs-12">
-				<div class="alert alert-error alert-dismissable">
-					<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-					<strong>Error!</strong> <%= errorMessage %>
-				</div>
-			</div>
-		</div>
-		
-		<% } %>
-
-		<% if(locals.message) { %>
-		<div class="row">
-			<div class="col-xs-12">
-				<div class="alert alert-success alert-dismissable">
-					<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-					<strong>Success!</strong> <%= message %>
-				</div>
-			</div>
-		</div>
-
-		<% } %>
+		<%- include messages.html %>
 		<div class="row">
 			<div class="col-md-6">
-				<h3 class="center-text">Create Post</h3>
-				<form class="form-horizontal newpost" role="form" action="/admin/post/create" method="POST">
+				<% if(locals.editing) {%>
+					<h3 class="center-text">Edit Post</h3>
+				<% } else { %>
+					<h3 class="center-text">Create Post</h3>
+				<% } %>
+				<form class="form-horizontal newpost" role="form" action="/admin/post/<%= (locals.editing && locals.post) ? "update/" + post._id : "create" %>" method="POST">
 				  <div class="form-group">
-				    <label for="title" class="col-sm-2 control-label">Title</label>
+				    <label for="title" class="col-sm-2 control-label">*Title</label>
 				    <div class="col-sm-10">
-				      <input type="text" class="form-control" id="title" placeholder="Title" name="title">
+				      <input type="text" class="form-control" id="title" placeholder="Title" name="title" 
+				      <% if(locals.editing && locals.posts) { %>
+				      	value="<%= post.title %>"
+				      <% } %>
+				      >
 				    </div>
 				  </div>
 				  <div class="form-group">
-				    <label for="content" class="col-sm-2 control-label">Content</label>
+				    <label for="content" class="col-sm-2 control-label">*Content</label>
 				    <div class="col-sm-10">
 				    	<div class="wmd-panel">
 		    	            <div id="wmd-button-bar"></div>
-				      		<textarea class="form-control wmd-input" id="wmd-input" class="" rows="10" placeholder="Post content" name="content"></textarea>
+				      		<textarea class="form-control wmd-input" id="wmd-input" class="" rows="10" placeholder="Post content" name="markdown"><%= (locals.editing && locals.post) ? post.markdown : "" %></textarea>
 				      	</div>
 				    </div>
 				  </div>
 				  <div class="form-group">
 				    <label for="picture" class="col-sm-2 control-label">Image URL</label>
 				    <div class="col-sm-10">
-				      <input type="text" class="form-control" id="picture" placeholder="URL" name="picture">
+				      <input type="text" class="form-control" id="picture" placeholder="URL" name="picture"
+				      <% if(locals.editing && locals.posts) { %>
+				      	value="<%= post.picture %>"
+				      <% } %>
+				      >
+				    </div>
+				  </div>
+				  <div class="form-group">
+				    <label for="summary" class="col-sm-2 control-label">*Summary</label>
+				    <div class="col-sm-10">
+				      <textarea class="form-control" id="summary" placeholder="A summary that describes this post." name="summary" rows="6"><%= (locals.editing && locals.post) ? post.summary : "" %></textarea>
+				    </div>
+				  </div>
+				  <div class="form-group">
+				    <label for="type" class="col-sm-2 control-label">Type</label>
+				    <div class="col-sm-10">
+				    	<select class="form-control" name="type" id="type">
+							<option value="tutorial" <%= (locals.editing && locals.post && locals.post.type === "tutorial") ? "selected" : "" %>>Tutorial</option>
+							<option value="bookmark" <%= (locals.editing && locals.post && locals.post.type === "bookmark") ? "selected" : "" %>>Bookmark</option>
+				    	</select>
+				    </div>
+				  </div>
+				  <div class="form-group">
+				    <label for="tags" class="col-sm-2 control-label">Tags</label>
+				    <div class="col-sm-10">
+				      <input type="text" class="form-control" id="tags" placeholder="Tags" name="tags" 
+				      <% if(locals.editing && locals.posts) { %>
+				      	value="<%= post.tags %>"
+				      <% } %>
+				      >
 				    </div>
 				  </div>
 				  <div class="form-group">
 				    <div class="col-sm-offset-2 col-sm-10">
-				      <button type="submit" class="btn btn-default btn-xl">Add</button>
+				      <button type="submit" class="btn btn-default btn-xl pull-right"><%= (locals.editing) ? "Update" : "Add" %></button>
 				    </div>
 				  </div>
 				</form>
@@ -90,17 +94,17 @@
 			
 		</div>
 		<div class="row">
-			<div class="col-md-6 recent-posts">
+			<div class="col-md-6 recent-posts" id="posts">
 				<h3>Recent Posts</h3>
 				<ul class="list-group">
 				<% posts.forEach(function(post, index){ %>
 					<li class="list-group-item">
-						<span><%= post.title %></span>
+						<span><%- post.title %></span>
 						
 						<div class="pull-right">
-							<a href="#">View</a>
+							<a href="/blog/post/<%= post.url %>" target="_blank">View</a>
 							 | 
-							<a href="#">Edit</a>
+							<a href="/admin/post/edit/<%= post.id %>">Edit</a>
 							 | 
 							<form action="/admin/post/delete" method="post">
 								<input type="hidden" value="<%= post.id %>" name="id" />
@@ -120,37 +124,6 @@
 		</div>
 	</div>
 
-	<footer class="cs-secondary-b cs-bg-main">
-		<div class="container cs-txt-dark">
-			<div class="row">
-				<div class="col-sm-3 col-md-3 txt-xsm hidden-xs">
-					<p>Thanks to Daniel Teres for his designing tips and guidance, The Flaticon&copy; awesome designs by Freepik, Elegant Themes and Daniel Bruce.
-					</p>
-					<p class="ralign"><strong>Sebastian Perez &copy;2014</strong></p>
-				</div>
-				<div class="col-sm-9 col-md-9 socialicons cs-txt-light">
-					<div class="mail">
-						<a class="social cs-complementary cs-nobg cs-txt-main" href="mailto:sebastianteres@me.com">
-							<span class="flaticon-little18"></span></a>
-					</div>
-					<a class="social" href="http://www.linkedin.com/in/sebastianperezteres/en" target="_blank">
-						<span class="flaticon-linkedin2"></span></a>
-					<a class="social" href="https://www.google.com/+SebastianPerezTeres?rel=author" target="_blank">
-						<span class="flaticon-social92"></span></a>
-					<a class="social" href="https://twitter.com/sebastianteres" target="_blank">
-						<span class="flaticon-twitter4"></span></a>
-					<a class="social" href="https://github.com/sebastianteres" target="_blank">
-						<span class="flaticon-github3"></span></a>
-				</div>
-				<div class="col-xs-12 visible-xs">
-					<p>Thanks to Daniel Teres for his designing tips and guidance
-						<br/>The Flaticon&copy; awesome designs by Freepik, Elegant Themes and Daniel Bruce.
-					</p>
-					<p class="ralign"><strong>Sebastian Perez &copy;2014</strong></p>
-				</div>
-			</div>
-		</div>
-	</footer>
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 	<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
 	<script src="/js/vendor/pagedown/Markdown.Converter.js"></script>

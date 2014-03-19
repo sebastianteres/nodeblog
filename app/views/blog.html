@@ -10,80 +10,66 @@
 	<meta name="description" content="I’m a creative frontend engineer focused on delivering usable and beautiful applications to the end user.">
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
 	<link href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
-	<link rel="stylesheet" type="text/css" href="http://cdn.ucb.org.br/Scripts/snippet/jquery.snippet.css" />
-	<link rel="stylesheet" href="css/main.css">
+	<link rel="stylesheet" href="/css/main.css">
 	<!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
 </head>
-<body>
-	<nav class="navbar cs-secondary-b cs-bg-darker">
-		<div class="container">
-			<div class="row">
-				<div class="col-xs-8 col-sm-6 col-md-4">
-					<span class="cs-txt-lighter">Sebastian Perez</span>
-				</div>
-				<div class="col-xs-4 col-sm-3 col-sm-offset-3 col-md-2 col-md-offset-6">
-					<a class="btn dark pull-right" href="/">About</a>
-				</div>
-			</div>
-		</div>
-	</nav>
+<body class="cs-secondary-b cs-bg-lighter blog">
+	<%- include blog_nav.html %>
 
-	<div class="container-fluid blog cs-primary">
+	<div class="container fill">
 		<div class="row">
+			<div class="col-sm-9">
+			<% posts.forEach(function (post, index){ %>
+			
+				<div class="row post-type-<%= post.type %>">
+					<div class="col-sm-2 post-meta">
+						<a href="/blog/<%= post.type %>">
+							<div class="post-type">
+								<span class="glyphicon glyphicon-<%= viewHelpers.getPostIcon(post.type) %>"></span>
+							</div>
+						</a>
+						<p><%= helpers.dateFromNow(post.updatedAt) %></p>
+						<% if ( post.tags) {post.tags.forEach(function(tag){
+							%>
+							<a href="/blog?tag=<%= tag %>"><span class="label label-default"><%= tag %></span></a>&nbsp;
 
-
-		    <% posts.forEach(function(post, index){ %>
-			<div class="col-xs-12 col-sm-6 col-md-4 <%= getPostStyle(index) %>">
-				<div class="post-preview">
-					<div class="post-image">
-						An image goes here here here here here here here here here
+							<%
+							}) };
+						%>
 					</div>
-					<h3><%= post.title %></h3>
-					<p><%- post.content %></p>
+					<div class="col-sm-10">
+						<div class="post-preview">
+							<div class="post-title"><%- post.title %></div>
+							<div class="post-body">
+								<p><%- post.summary %></p>
+								<div class="action-area">
+									<a href="/blog/post/<%= post.url %>" class="btn btn-lg">Read more</a>
+								</div>
+							</div>
+						</div>
+					</div>
 				</div>
-			</div>
+			
 			<% }); %>
-
+				<% if (locals.olderPosts.display || locals.newerPosts.display) { %>
+				<div class="row blog-action">
+					<div class="col-sm-10 col-sm-offset-2">
+						<% if (locals.olderPosts.display) { %>
+							<a class="btn pull-left" href="?page=<%= locals.olderPosts.page %><%= (locals.tag_filter) ? "&tag=" + locals.tag_filter : "" %>"><span class="glyphicon glyphicon-chevron-left"></span> Older posts</a>
+						<% } %>
+						<% if (locals.newerPosts.display) { %>
+							<a class="btn pull-right" href="?page=<%= locals.newerPosts.page %><%= (locals.tag_filter) ? "&tag=" + locals.tag_filter : "" %>"> Newer posts <span class="glyphicon glyphicon-chevron-right"></span></a>
+						<% } %>
+					</div>
+				</div>
+				<% } %>
+			</div>
+			<div class="col-sm-3">
+				<%- include blog_sidebar.html %>
+			</div>
 		</div>
 	</div>
-
-	<footer class="cs-secondary-b cs-bg-main">
-		<div class="container cs-txt-dark">
-			<div class="row">
-				<div class="col-sm-3 col-md-3 txt-xsm hidden-xs">
-					<p>Thanks to Daniel Teres for his designing tips and guidance, The Flaticon&copy; awesome designs by Freepik, Elegant Themes and Daniel Bruce.
-					</p>
-					<p class="ralign"><strong>Sebastian Perez &copy;2014</strong></p>
-				</div>
-				<div class="col-sm-9 col-md-9 socialicons cs-txt-light">
-					<div class="mail">
-						<a class="social cs-complementary cs-nobg cs-txt-main" href="mailto:sebastianteres@me.com">
-							<span class="flaticon-little18"></span></a>
-					</div>
-					<a class="social" href="http://www.linkedin.com/in/sebastianperezteres/en" target="_blank">
-						<span class="flaticon-linkedin2"></span></a>
-					<a class="social" href="https://www.google.com/+SebastianPerezTeres?rel=author" target="_blank">
-						<span class="flaticon-social92"></span></a>
-					<a class="social" href="https://twitter.com/sebastianteres" target="_blank">
-						<span class="flaticon-twitter4"></span></a>
-					<a class="social" href="https://github.com/sebastianteres" target="_blank">
-						<span class="flaticon-github3"></span></a>
-				</div>
-				<div class="col-xs-12 visible-xs">
-					<p>Thanks to Daniel Teres for his designing tips and guidance
-						<br/>The Flaticon&copy; awesome designs by Freepik, Elegant Themes and Daniel Bruce.
-					</p>
-					<p class="ralign"><strong>Sebastian Perez &copy;2014</strong></p>
-				</div>
-			</div>
-		</div>
-	</footer>
-
-	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-	<script type="text/javascript" src="http://cdn.ucb.org.br/Scripts/snippet/jquery.snippet.js"></script>
-	<script>
-		$("pre").snippet("javascript", "bright");
-	</script>
+	<%- include footer.html %>
 	<!--<script src="js/home.js"></script>
 	<script>
 		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){

@@ -34,12 +34,17 @@
  * http://stackoverflow.com/questions/17005500/bootstrap-css-responsive-left-with-a-white-space-on-the-right
  */
 html {
+	height: 100%;
   width: auto !important;
   overflow-x: hidden !important;
 }
 body {
   width: auto !important;
   overflow-x: hidden !important;
+  height: 100%;
+}
+.fill{
+	min-height:75%; /* real browsers */
 }
 .txt-sm {
 	font-size: 0.9em;
@@ -58,6 +63,7 @@ body {
 	padding-top: 10px;
 	padding-bottom: 10px;
 	border-radius: 0;
+	border: 0;
 	font-weight: normal;
 	.row {
 		line-height: 40px;
@@ -65,8 +71,15 @@ body {
 	margin-bottom: 0;
 	.btn {
 		padding: 10px 20px;
+
 	}
+	li {
+		margin-left: 10px;
+		margin-top: 5px;
+	}
+
 }
+.navbar-default .navbar-nav>li>a { color: #fff;}
 
 .hero {
 	text-align: center;
@@ -333,20 +346,7 @@ footer {
 /**
  * BLOG
  */
-.blog {
-	.post-preview {
-		padding: 20px;
-		h3 {
-			margin: 0 0 10px;
-		}
-		.post-image {
-			margin: 20px;
-			width: 120px;
-			float: left;
-		}
-	}
-}
-
+@import 'blog';
 
 /**
  * ADMIN
@@ -362,5 +362,8 @@ footer {
 	}
 	.container {
 		margin-top: 20px;
+	}
+	.navbar .container {
+		margin-top: 0;
 	}
 }

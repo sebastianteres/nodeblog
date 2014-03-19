@@ -6,28 +6,52 @@ var mongoose = require('mongoose'),
 
 var PostSchema = new Schema({
     "title" : { type: String, required: true },
-	"content" : { type: String, required: true },
+	"content" : { type: String },
+	"markdown" : { type: String, required: true },
 	"author" : { type: String, default: "Sebastian Perez" },
 	"createdAt" : { type: Date, default: Date.now },
 	"updatedAt" : { type: Date, default: Date.now },
 	"tags" : [{ type: String }],
 	"picture" : String,
-	"url" : { type: String }
+	"url" : { type: String },
+	"summary" : { type : String, required: true },
+	"type" : {type: String, default: "tutorial"}
 });
 
+//Handle UpdatedAt
 PostSchema.pre('save', function(next) {
     var post = this;
-    if (!post.isModified('url')) return next();
-    post.url = createPostUrl(post);
+    post.updatedAt = Date.now();
     return next();
 });
 
+//Creates post URL
 PostSchema.pre('save', function(next) {
     var post = this;
-    if (!post.isModified('content')) return next();
-    post.content = formatContent(post.content);
+    if (!post.url){
+	    post.url = encodeURIComponent(post.title.toLowerCase().replace(/\s/g, '_')) + "__" + toolbox.getUid(5);
+	}
     return next();
 });
+
+//Transforms Markdown to HTML
+PostSchema.pre('save', function(next) {
+    var post = this;
+    if (!post.isModified('markdown')) return next();
+    post.content = saneConverter.makeHtml(post.markdown);
+    return next();
+});
+
+//Trim tags
+PostSchema.pre('save', function(next) {
+    var post = this;
+    if (!post.isModified('tags')) return next();
+    post.tags = post.tags.map(function(tag) {
+    	return tag.trim();
+    });
+    return next();
+});
+
 /**
  * Find posts by tags, supports pagination.
  * @param  {Array} tags
@@ -35,56 +59,65 @@ PostSchema.pre('save', function(next) {
  * @param  {int} limit
  * @return {Array<Post>}
  */
-PostSchema.statics.findByTags = function (tags, page, limit) {
-	//TODO: implement
-};
-
-PostSchema.statics.getLastPosts = function (cb, limit, page) {
-	var query = this.find({});
-	query.limit(limit || 20);
-	query.skip( (page - 1) * limit);
+PostSchema.statics.findByTag = function (cb, params) {
+	var query = this.find({"tags": new RegExp('^' + params.tag + '$', "i")});
+	if ( params.limit !== 0 ) {
+		query.limit(params.limit);
+		query.skip( (params.page - 1) * params.limit);
+	}
+	query.sort('-updatedAt');
+	query.select('title summary updatedAt url type tags');
 	query.exec(cb);
 };
 
-PostSchema.statics.getLastPostsPreview = function (cb, limit, page) {
+PostSchema.statics.getLastPosts = function (cb, params) {
 	var query = this.find({});
-	query.limit(limit || 20);
-	query.skip( (page - 1) * limit);
+	if ( params.limit !== 0 ) {
+		query.limit(params.limit);
+		query.skip( (params.page - 1) * params.limit);
+	}
+	query.sort('-updatedAt');
 	query.exec(cb);
 };
 
-PostSchema.statics.getLastPostsTitles = function (cb, limit, page) {
+PostSchema.statics.getLastPostsPreview = function (cb, params, searchCriteria) {
+	var query = this.find(searchCriteria);
+	if ( params.limit !== 0 ) {
+		query.limit(params.limit);
+		query.skip( (params.page - 1) * params.limit);
+	}
+	query.sort('-updatedAt');
+	query.select('title summary updatedAt url type tags');
+	query.exec(cb);
+};
+
+PostSchema.statics.getLastPostsTitles = function (cb, params) {
 	var query = this.find({});
-	query.limit(limit || 20);
-	query.skip( (page - 1) * limit);
-	query.select('title updatedAt');
+	if ( params.limit !== 0 ) {
+		query.limit(params.limit);
+		query.skip( (params.page - 1) * params.limit);
+	}
+	query.sort('-updatedAt');
+	query.select('title updatedAt url');
+	query.exec(cb);
+};
+
+PostSchema.statics.getByUrl = function (cb, url) {
+	this.findOne({ "url": url }, cb);
+};
+
+PostSchema.statics.searchPost = function (value, cb, params) {
+	var query = this.find();
+	if ( params.limit !== 0 ) {
+		query.limit(params.limit);
+		query.skip( (params.page - 1) * params.limit);
+	}
+	query.sort('-updatedAt');
+	query.select('title summary updatedAt url type tags');
 	query.exec(cb);
 };
 
 var PostModel = mongoose.model('Post', PostSchema);
 
-function createPostUrl (post) {
 
-	return "http://www.sebastianteres.com/blog/post/" + post.title.toLowerCase().replace(/\s/g, '_') + toolbox.getUid(5);
-}
-
-function formatContent (content) {
-	console.log(content);
-	var result = saneConverter.makeHtml(content);
-	console.log("RESULT");
-	console.log(result);
-	return result;
-}
-
-module.exports = {
-	connected : false,
-	getPostModel : function () {
-		if (!this.connected) {
-			mongoose.connect('mongodb://localhost/sebastianteres');
-			var db = mongoose.connection;
-			db.on('error', console.error.bind(console, 'connection error:'));
-			this.connected = true;
-		}
-		return PostModel;
-	}
-};
+module.exports = PostModel;

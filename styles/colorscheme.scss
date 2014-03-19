@@ -75,6 +75,26 @@ $complementary: #A66715, #BF9154, #ffac40, #FFC170, #FFD196;
 	}
 }
 
+@mixin csbg($colors) {
+  @if (type-of($colors) == "list" and length($colors) == 5) {
+		&.darker {
+			background-color: nth($colors, 1) !important;
+		}
+		&.dark {
+			background-color: nth($colors, 2) !important;
+		}
+		&.main {
+			background-color: nth($colors, 3) !important;
+		}
+		&.light {
+			background-color: nth($colors, 4) !important;
+		}
+		&.lighter {
+			background-color: nth($colors, 5) !important;
+		}
+	}
+}
+
 .cs-primary {
 	@include cs($primary);
 }
@@ -89,4 +109,21 @@ $complementary: #A66715, #BF9154, #ffac40, #FFC170, #FFD196;
 
 .cs-complementary {
 	@include cs($complementary);
+}
+
+/** GLOBALS **/
+.cs-gl-bg-primary {
+	@include csbg($primary);
+}
+
+.cs-gl-bg-secondary-a {
+	@include csbg($secondaryA);
+}
+
+.cs-gl-bg-secondary-b {
+	@include csbg($secondaryB);
+}
+
+.cs-gl-bg-complementary {
+	@include csbg($complementary);
 }
