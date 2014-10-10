@@ -1,0 +1,132 @@
+.navbar.navbar-default .navbar-nav>li>a.category {
+	background-color: transparent;
+	border-left: 2px solid;
+	border-bottom: 2px solid;
+	border-radius: 0;
+	&.category-bookmark {
+		border-color: #5dd0c0;
+	}
+	&.category-tutorial {
+		border-color: #65a5d1;
+	}
+	&.category-bookmark:hover {
+		color: #efefef;
+	}
+	&.category-tutorial:hover {
+		color: #efefef;
+	}
+}
+
+.post-meta {
+	margin-top: 20px;
+	padding: 20px;
+	text-align: right;
+	color: #666;
+	line-height: 1.8em;
+	.post-type {
+		background: #e3e3e3;
+		color: #333;
+		font-size: 2.5em;
+		padding: 15px 20px;
+		border-left: 6px solid #65a5d1;
+		text-align: center;
+	}
+
+	a:hover .post-type {
+		color: #65a5d1;
+	}
+
+	.label {
+		padding: 5px;
+		font-size: 0.7em;
+	}
+}
+
+.blog {
+
+	.post-preview {
+		margin-top: 40px;
+		.post-body {
+			padding: 20px;
+			background: #fff;
+			border-radius: 0 0 5px 5px;
+			.action-area {
+				text-align: right;
+				a.btn {
+					font-size: 1.2em;
+				}
+			}
+
+			p {
+				font-size: 1em;
+				color: #333;
+			}
+		}
+		.post-title {
+			font-size: 1.5em;
+			border-radius: 5px 5px 0 0;
+			padding: 2px 20px;
+			background: #65a5d1;
+			color: #fff;
+		}
+	}
+	.post-type-bookmark {
+		.post-type {
+			border-color: #5dd0c0;
+		}
+		a:hover .post-type {
+			color: #5dd0c0;
+		}
+		.post-preview .post-title {
+			background-color: #5dd0c0;
+		}
+	}
+	.post-image {
+		max-width: 100%;
+	}
+	.block-link {
+		color: inherit;
+		text-decoration: none;
+	}
+	.block-link:hover {
+		color: inherit;
+	}
+	footer {
+		margin-top: 40px;
+	}
+}
+.blog-action {
+	margin-top: 40px;
+	.btn {
+		background-color: #65a5d1;
+	}
+}
+
+.post-container {
+	div.picture {
+		float: right;
+		padding-left: 20px;
+		padding-bottom: 20px;
+	}
+	img {
+		width: 100%;
+		max-width: 480px;
+	}
+	pre.snippet-wrap, pre.sh_sourceCode {
+		background: #efefef;
+		-moz-border-radius: 5px;
+		-webkit-border-radius: 5px;
+		border-radius: 5px;
+		box-shadow: none;
+		-moz-box-shadow: none;
+		-webkit-box-shadow: none;
+	}
+	border-radius: 5px;
+	background: #fff;
+	margin-top: 40px;
+	margin-bottom: 20px;
+}
+
+.sidebar {
+	margin-top: 40px;
+}
